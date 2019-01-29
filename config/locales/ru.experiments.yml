@@ -1,0 +1,16 @@
+ru:
+  actions:
+    experiments:
+      more: Добавить эксперимент
+  activerecord:
+    attributes:
+      experiment:
+        genbank_id: Номер в системе Genbank
+        sequence: Последовательность гена
+  placeholders:
+    experiments:
+      genbank_id: Заполните номер в системе Genbank
+      sequence: Введите последовательность гена
+  template:
+    experiments:
+      title: 'Последовательность гена %{i}'

@@ -1,0 +1,22 @@
+- if primers.any?
+  %table{:class => 'ui celled selectable striped primers table'}
+    %thead
+      %tr
+        %th= t 'activerecord.attributes.primer.code'
+        %th= t 'activerecord.attributes.primer.direction'
+        %th= t 'activerecord.attributes.primer.sequence'
+    %tbody
+      -primers.each do |primer|
+        %tr
+          %td.collapsing
+            = link_to primer.code,
+              primer_path(primer),
+              :title => t('tips.primers.more'),
+              :remote => true,
+              :class => :loads
+          %td.collapsing= primer.direction_name
+          %td= primer.sequence
+- else
+  .ui.message
+    .header= t 'tips.common.empty'
+    .content= t 'tips.common.no_entries'

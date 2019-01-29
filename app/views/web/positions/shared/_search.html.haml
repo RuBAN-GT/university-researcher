@@ -1,0 +1,13 @@
+= form_tag positions_path, :method => :get, :class => 'ui positions search form' do
+  .field.link
+    = link_to "#{icon :plus} #{t 'actions.positions.create'}".html_safe,
+      new_position_path,
+      :class => 'ui labeled icon positive button'
+
+  .field.inline
+    = label_tag :param_full_name, t('activerecord.attributes.position.full_name'), :class => 'mobile hidden'
+    = text_field_tag :param_full_name,
+      params[:param_full_name],
+      :placeholder => t('placeholders.positions.full_name')
+
+    = button_tag icon(:search), :class => 'ui icon button'

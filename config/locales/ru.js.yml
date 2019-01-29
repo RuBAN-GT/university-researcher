@@ -1,0 +1,11 @@
+ru:
+  js:
+    add_term: Добавить <b>{term}</b>
+    destroy: Удалить
+    loading: Загрузка
+    modal:
+      cansel: Отмена
+      message: Вы действительно хотите этого?
+      ok: Подтвердить
+      title: Подтверждение действия
+    no_results: Нет результатов

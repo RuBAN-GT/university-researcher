@@ -1,0 +1,43 @@
+!!! 5
+%html
+  %head
+    = display_meta_tags
+    = csrf_meta_tags
+
+    %meta{:name => 'parent-url', :content => parent_url}
+    %meta{:name => :viewport, :content => 'width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1'}
+    -#meta{:name => 'turbolinks-cache-control', :content => 'no-cache'}
+
+    = stylesheet_link_tag 'application',
+      :media => :all,
+      'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'web/application',
+      :media => :all,
+      'data-turbolinks-track': 'reload'
+
+    :javascript
+        I18n = {
+          defaultLocale: '#{I18n.default_locale}',
+          locale: '#{I18n.locale}',
+          fallbacks: true
+        };
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'web/application', 'data-turbolinks-track': 'reload'
+
+  %body{:class => controller_classes}
+    .main.container
+      = render '/web/layouts/shared/navigation'
+
+      .main.content
+        = render '/web/layouts/shared/menu'
+
+        .ui.fluid.container
+          = breadcrumbs :class => 'ui breadcrumb',
+            :separator => '<span class="divider">/</span>',
+            :current_class => 'active section',
+            :pretext => icon(:home)
+          = yield
+
+    %div{:class => 'ui flash elements'}= flash_all
+
+    = target_scripts

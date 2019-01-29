@@ -1,0 +1,91 @@
+- breadcrumb :position, @position
+
+%h1{:class => 'ui dividing header'}= title @position.full_name
+
+.actions.buttons
+  = link_to "#{icon :edit} #{t 'actions.positions.edit'}".html_safe,
+    edit_position_path(@position),
+    :class => 'ui positive icon labeled button'
+  = link_to "#{icon :trash} #{t 'actions.positions.destroy'}".html_safe,
+    position_path(@position),
+    :class => 'ui negative icon labeled button',
+    :method => :delete,
+    :data => {:confirm => true}
+
+-# Общая информация
+%table{:class => 'ui definition selectable celled table'}
+  %tr
+    %td.collapsing= t 'activerecord.attributes.position.created_at'
+    %td= @position.created_at.strftime('%Y/%m/%d %H:%M')
+  %tr
+    %td.collapsing= t 'activerecord.attributes.position.updated_at'
+    %td= @position.updated_at.strftime('%Y/%m/%d %H:%M')
+
+-# Классификация
+- if @position.categories.any?
+  %h4{:class => 'ui dividing header'}= t 'tips.positions.classification'
+  %table{:class => 'ui definition selectable celled table'}
+    - @position.categories.classified.each do |cat|
+      %tr
+        %td.collapsing= cat.main_type_name
+        %td= link_to cat.full_name, category_path(cat)
+
+- unless @position.useful_type.nil?
+  %h4{:class => 'ui dividing header'}= t 'activerecord.attributes.position.useful_type'
+  %div.content= @position.useful_type.name
+
+-# Фотографии
+- if @position.photos.any?
+  %h4{:class => 'ui dividing header'}= t 'activerecord.attributes.position.photos'
+  %div{:class => 'ui six stackable cards'}
+    - @position.photos.each do |attach|
+      = link_to attach.photo_url, :class => 'card image link' do
+        %div.image= image_tag attach.photo.thumb.url
+
+-# Морф описание
+- if @position.description.present?
+  %h4{:class => 'ui dividing header'}= t 'activerecord.attributes.position.description'
+  %div.content= @position.description.html_safe
+
+-# Хоз значимость
+- if @position.importance.present?
+  %h4{:class => 'ui dividing header'}= t 'activerecord.attributes.position.importance'
+  %div.content= @position.importance.html_safe
+
+-# Маркер
+- if @position.genetic_marker.present?
+  %h4{:class => 'ui dividing header'}= t 'activerecord.attributes.position.genetic_marker_id'
+  %div.content= @position.genetic_marker.marker
+
+-# Праймеры
+- if @position.primers.any?
+  %h4{:class => 'ui dividing header'}= t 'tips.positions.primers'
+  = render '/web/primers/shared/table', :primers => @position.primers
+
+-# Эксперименты
+- if @position.experiments.any?
+  %h4{:class => 'ui dividing header'}= t 'tips.positions.experiments'
+  %table{:class => 'ui celled selectable striped sequence table'}
+    %thead
+      %tr
+        %th #
+        %th= t 'activerecord.attributes.experiment.sequence'
+        %th.collapsing Genbank
+    %tbody
+      -@position.experiments.each_with_index do |exp, i|
+        %tr
+          %td{:class => 'collapsing top aligned'}= (i + 1)
+          %td{:class => 'sequence top aligned'}= exp.sequence
+          %td{:class => 'collapsing top aligned'}= (exp.genbank_id || '---')
+
+-# Выровненная последовательность
+- if @position.aligned_sequence.present?
+  %h4{:class => 'ui dividing header'}= t 'activerecord.attributes.position.aligned_sequence'
+  %div{:class => 'ui secondary sequence segment'}= @position.aligned_sequence
+
+-# Карта
+- if @position.restriction_map.present?
+  %h4{:class => 'ui dividing header'}= t 'activerecord.attributes.position.restriction_map'
+  = @position.restriction_map.html_safe
+
+= tag_parent_url position_path(@position)

@@ -1,0 +1,38 @@
+ru:
+  actions:
+    common:
+      cansel: Отмена
+      choise: Выберете
+      clear: Очистить
+      destroy: Удалить
+      save: Сохранить
+      sign_out: Выход
+      search: Найти
+  flash:
+    common:
+      error:
+        title: Ошибка
+      info:
+        title: Информация
+      success:
+        title: Успех
+      warning:
+        title: Внимание
+  placeholders:
+    common:
+      email: Введите email
+      new_password: Введите новый пароль
+      new_password_confirmation: Подтвердите новый пароль
+      password: Введите пароль
+  template:
+    common:
+      action: Действия
+      dashboard: Админка
+      home: Главная
+      info: Информация
+      profile: Профиль
+      settings: Настройки
+  tips:
+    common:
+      empty: Пусто
+      no_entries: Нет материалов, попробуйте добавить самостоятельно.

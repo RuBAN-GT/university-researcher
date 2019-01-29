@@ -1,0 +1,45 @@
+ru:
+  actions:
+    primers:
+      create: Добавить праймер
+      delete: Удалить праймер
+      edit: Изменить праймер
+  activerecord:
+    attributes:
+      primer:
+        code: Код
+        created_at: Добавлено
+        direction: Направление
+        sequence: Последовательность
+  messages:
+    primers:
+      created: Праймер успено добавлен
+      destroyed: Праймер успешно удалён
+      empty_code: не может быть пустым
+      empty_sequence: не может быть пустой
+      updated: Праймер успешно обновлён
+      wrong: Ошибка изменения праймера
+      wrong_direction: неверное
+  order:
+    primers:
+      by:
+        code: коду
+        direction: направлению
+        sequence: последовательности
+      label: Сортировать по
+  parameters:
+    primers:
+      direction:
+        types:
+          forward: Прямое
+          reverse: Обратное
+      positions: Позиции
+  placeholders:
+    primers:
+      code: Введите код праймера
+      select: Выберете праймеры
+      sequence: Введите последовательность
+  tips:
+    primers:
+      more: Подробнее
+      selected: '%{selected} из %{total} записей'

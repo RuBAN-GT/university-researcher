@@ -1,0 +1,10 @@
+%div.card.image.existing{'data-photo-id' => position_photo.id}
+  %div.image= image_tag position_photo.photo.thumb.url
+
+  = link_to "#{icon :trash} #{t 'actions.common.destroy'}".html_safe,
+          position_photo_path(position_photo),
+          :method => :delete,
+          :remote => true,
+          :class => 'ui negative icon labeled button'
+
+  = hidden_field_tag 'position[position_photo_ids][]', position_photo.id

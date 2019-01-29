@@ -1,0 +1,19 @@
+<div class="ui list">
+  <% if controller_name != 'sessions' %>
+    <div class="item">
+      <%= icon 'right triangle' %>
+      <div class="content">
+        <%= link_to t('devise.shared.links.sign_in'), new_session_path(resource_name) %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if devise_mapping.recoverable? && controller_name != 'passwords' %>
+    <div class="item">
+      <%= icon 'right triangle' %>
+      <div class="content">
+        <%= link_to t('devise.shared.links.forgot_your_password'), new_password_path(resource_name) %>
+      </div>
+    </div>
+  <% end %>
+</div>

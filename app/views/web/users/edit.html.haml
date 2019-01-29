@@ -1,0 +1,59 @@
+- breadcrumb :edit_user, current_user
+
+%h1{:class => 'ui dividing header'}= title
+
+= form_for @user, :html => { :class => 'ui form' } do |f|
+
+  %h4{:class => 'ui dividing header'}= t 'template.users.basic'
+
+  %div{:class => 'ui icon message'}
+    = icon :info
+    = t 'tips.users.email'
+
+  %div.field{:class => "four wide #{f.error_class :email}"}
+    = f.label :email
+    = f.email_field :email,
+      :placeholder => t('placeholders.users.email'),
+      :required => true
+    = f.error_message :email
+
+  %div.field{:class => "four wide #{f.error_class :realname}"}
+    = f.label :realname
+    = f.text_field :realname,
+      :placeholder => t('placeholders.users.realname'),
+      :required => true
+    = f.error_message :realname
+
+  %h4{:class => 'ui dividing header'}= t 'template.users.security'
+
+  %div{:class => 'ui icon message'}
+    = icon :protect
+    = t 'tips.users.security'
+
+  %div.field{:class => "ten wide #{f.error_class :current_password}"}
+    = f.label :current_password,
+      t('activerecord.attributes.user.current_password')
+    = f.password_field :current_password,
+    :placeholder => t('placeholders.users.current_password')
+    = f.error_message :current_password
+
+  %div{:class => 'fields'}
+    %div.field{:class => "five wide #{f.error_class :password}"}
+      = f.label :password,
+        t('activerecord.attributes.user.new_password')
+      = f.password_field :password,
+      :placeholder => t('placeholders.common.new_password')
+      = f.error_message :password
+
+    %div.field{:class => "five wide #{f.error_class :current_password}"}
+      = f.label :password_confirmation,
+        t('activerecord.attributes.user.password_confirmation')
+      = f.password_field :password_confirmation,
+      :placeholder => t('placeholders.common.new_password_confirmation')
+      = f.error_message :password_confirmation
+
+  %div{:class => 'ui divider'}
+
+  %div.actions
+    = f.button t('actions.common.save'), :class => 'ui positive button'
+    = link_to t('actions.common.cansel'), user_path(@user), :class => 'ui button'

@@ -1,0 +1,20 @@
+= form_for @primer, :html => { :class => 'ui form' } do |f|
+  %div.field.required{:class => f.error_class(:code)}
+    = f.label :code
+    = f.text_field :code,
+      :placeholder => t('placeholders.primers.code'),
+      :required => true
+    = f.error_message :code
+
+  %div.field.required{:class => f.error_class(:direction)}
+    = f.label :direction
+    = f.select_direction :direction
+    = f.error_message :direction
+
+  %div.field.required{:class => f.error_class(:sequence)}
+    = f.label :sequence
+    = f.text_area :sequence,
+      :rows => 3,
+      :placeholder => t('placeholders.primers.sequence'),
+      :required => true
+    = f.error_message :sequence

@@ -1,0 +1,30 @@
+.ui.main.common.top.fixed.menu
+  .ui.fluid.container
+    .item.link.toggle
+      = icon :sidebar
+    = link_to researcher_copyright, root_path, :class => 'header item title'
+
+    .right.menu
+      .ui.dropdownable.dropdown.item
+        = icon :user
+        %span= current_user.realname
+        = icon :dropdown
+
+        .menu
+          - if current_user.role? :admin
+            = link_to "#{icon :dashboard} #{t 'template.common.dashboard'}".html_safe,
+            rails_admin.dashboard_path,
+            :class => :item
+
+          = link_to "#{icon :user} #{t 'template.common.profile'}".html_safe,
+            user_path(current_user),
+            :class => :item
+
+          = link_to "#{icon :setting} #{t 'template.common.settings'}".html_safe,
+            edit_user_path(current_user),
+            :class => :item
+
+          = link_to "#{icon 'sign out'} #{t 'actions.common.sign_out'}".html_safe,
+            destroy_user_session_path,
+            :class => :item,
+            :method => :delete

@@ -1,0 +1,11 @@
+%div{:class => 'ui modal primer edit', :data => { :url => edit_primer_path(@primer) } }
+  = icon :close
+
+  %div.header= title
+
+  %div.content
+    = render '/web/primers/shared/form'
+
+  %div.actions
+    %div{:class => 'ui cansel deny button'}= t 'actions.common.cansel'
+    %div{:class => 'ui approve positive button'}= t 'actions.common.save'

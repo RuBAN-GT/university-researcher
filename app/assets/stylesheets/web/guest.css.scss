@@ -1,0 +1,14 @@
+html, body {
+  background: #dfdfdf;
+}
+
+.main.grid {
+  height: 100%;
+
+  .column {
+    margin: auto;
+
+    max-width: 500px;
+    min-width: 200px;
+  }
+}

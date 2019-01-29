@@ -1,0 +1,21 @@
+- breadcrumb :categories
+
+%h1{:class => 'ui dividing header'}= title t 'meta_tags.categories.index.title'
+
+%div{:class => 'ui basic actions nopadded segment'}
+  = link_to "#{icon :plus} #{t 'actions.categories.create'}".html_safe,
+    new_category_path,
+    :class => 'ui labeled icon positive button',
+    :remote => true
+%div{:class => 'ui divider'}
+
+- if @categories.any?
+  = render '/web/categories/shared/list',
+    :categories => @categories,
+    :class_name => 'ui large divided categories list'
+- else
+  .ui.message
+    .header= t 'tips.common.empty'
+    .content= t 'tips.common.no_entries'
+
+= render :template => "/web/categories/#{modal}" if defined? modal

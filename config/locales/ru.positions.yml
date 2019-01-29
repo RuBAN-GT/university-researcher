@@ -1,0 +1,66 @@
+ru:
+  actions:
+    positions:
+      create: Добавить позицию
+      destroy: Удалить позицию
+      edit: Изменить позацию
+  activerecord:
+    attributes:
+      position:
+        aligned_sequence: Выровненная последовательность
+        categories: Классификация
+        category_ids: Классификация
+        created_at: Добавлено
+        description: Морфологическое описание
+        full_name: Полное название
+        genetic_marker: Генетический маркер
+        genetic_marker_id: Используемый генетический маркер
+        importance: Хозяйственная значимость
+        name: Русское название
+        original_name: Латинское название
+        photos: Фотографии
+        primer_ids: Праймеры
+        primers: Праймеры
+        restriction_map: Карта рестрикции гена
+        updated_at: Обновлено
+        useful_type: Полезность
+        useful_type_id: Полезность
+        user_id: Добавил
+  messages:
+    positions:
+      created: Позиция успешно добавлена
+      destroyed: Позиция успешно удалена
+      empty_categories: должна быть указана
+      wrong_classify: неверная (неверная структура или заполнена не до конца)
+      empty_primers: должны быть указаны
+      updated: Позиция успешно обновлена
+      wrong: Проверьте правильность заполненных полей
+  placeholders:
+    positions:
+      aligned_sequence: Введите выровненный ген
+      description: Заполните морфологическое описание
+      genetic_marker: Введите генетический маркер
+      importance: Заполните описание хозяйственной значимости
+      name: Введите название на русском
+      full_name: Введите название
+      original_name: Введите название на латинском
+      restriction_map: Укажите карту рестрикции гена
+      useful_type: Выберете дополнительный тип
+      calculate: Подсчитать выровненную последовательность
+  template:
+    positions:
+      basic: Базовое
+      description: Описание
+      experiment: Эксперимент
+      experiments: Эксперименты
+      last: Последние позиции
+      special: Особенности
+  tips:
+    positions:
+      about_categories: 'Вы можете посмотреть или изменить категорию в разделе <a href="%{link}" target="_blank">Категории</a>'
+      about_genmarkers: Вы можете добавлять свои генетические маркеры, просто заполним соотвествующее поле.
+      about_primers: 'Все праймеры можно посмотреть или отредактировать в разделе <a href="%{link}" target="_blank">Праймеры</a>.'
+      classification: Научная классификация
+      experiments: Последовательности генов
+      no_photo: Нет фотографий, но вы можете загрузить новое
+      primers: Наиболее оптимальные праймеры для проведения баркодинга

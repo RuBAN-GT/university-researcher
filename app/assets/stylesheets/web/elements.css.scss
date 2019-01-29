@@ -1,0 +1,47 @@
+.nopadded.segment {
+  padding: 0;
+}
+
+.comment {
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+.actions.segment {
+  display: flex;
+
+  justify-content: space-between;
+}
+
+.sequence {
+  word-break: break-all;
+}
+
+.ui.cards {
+  align-items: center;
+}
+
+.field.inline {
+  .button {
+    vertical-align: middle;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .actions.segment {
+    display: block;
+
+    .field {
+      padding-bottom: 1.2em;
+    }
+  }
+  .actions.buttons {
+    .button {
+      display: block;
+      width: 100%;
+
+      margin-right: 0;
+      margin-bottom: 0.8em;
+    }
+  }
+}

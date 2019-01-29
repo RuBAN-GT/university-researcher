@@ -1,0 +1,20 @@
+.positions.search.form {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  .field.inline {
+    display: flex;
+    align-items: center;
+
+    .button {
+      margin-left: 0.5em;
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .positions.search.form {
+    display: block;
+  }
+}

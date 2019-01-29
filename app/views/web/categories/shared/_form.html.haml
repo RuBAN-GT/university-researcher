@@ -1,0 +1,23 @@
+= form_for @category, :html => { :class => 'ui form' } do |f|
+  %div{:class => 'required two fields'}
+    %div.field{:class => f.error_class(:original_name)}
+      = f.label :original_name
+      = f.text_field :original_name,
+        :placeholder => t('placeholders.categories.original_name')
+      = f.error_message :original_name
+
+    %div.field{:class => f.error_class(:name)}
+      = f.label :name
+      = f.text_field :name,
+        :placeholder => t('placeholders.categories.name')
+      = f.error_message :name
+
+  %div.field{:class => "required ten wide #{f.error_class :main_type}"}
+    = f.label :main_type
+    = f.select_main_type :main_type
+    = f.error_message :main_type
+
+  %div.field{:class => "ten wide #{f.error_class :parent_id}"}
+    = f.label :parent_id
+    = f.select_parent_category :parent_id
+    = f.error_message :parent_id

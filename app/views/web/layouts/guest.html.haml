@@ -1,0 +1,37 @@
+= researcher_safe_copyright
+
+!!! 5
+%html
+  %head
+    = display_meta_tags
+    = csrf_meta_tags
+
+    %meta{:name => :viewport, :content => 'width=device-width'}
+
+    = stylesheet_link_tag 'application',
+      :media => :all,
+      'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'web/application',
+      :media => :all,
+      'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'web/guest', media: 'all', 'data-turbolinks-track': 'reload'
+
+    :javascript
+        I18n = {
+          defaultLocale: '#{I18n.default_locale}',
+          locale: '#{I18n.locale}',
+          fallbacks: true
+        };
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'web/application', 'data-turbolinks-track': 'reload'
+
+  %body{:class => controller_classes}
+    %div{:class => 'ui middle aligned main grid'}
+      %div.column
+        %div{:class => 'ui stacked segment'}= yield
+
+        %div{:class => 'ui main footer nopadded right aligned basic comment segment'}= researcher_copyright
+
+    %div{:class => 'ui flash elements'}= flash_all
+
+    = target_scripts

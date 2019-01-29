@@ -1,0 +1,173 @@
+= form_for @position, :html => { :class => 'ui form', :multipart => true } do |f|
+  = f.hidden_field :id
+
+  %h3{:class => 'ui dividing header'}= t 'template.positions.basic'
+
+  -# Название
+  %div.required.fields
+    %div.field{:class => "five wide #{f.error_class :original_name}"}
+      = f.label :original_name
+      = f.text_field :original_name,
+        :placeholder => t('placeholders.positions.original_name')
+      = f.error_message :original_name
+
+    %div.field{:class => "five wide #{f.error_class :name}"}
+      = f.label :name
+      = f.text_field :name,
+        :placeholder => t('placeholders.positions.name')
+      = f.error_message :name
+
+  -# Фотографии
+  %h3{:class => 'ui dividing header'}= t 'activerecord.attributes.position.photos'
+  %div.position_photos
+    %div{:class => 'ui six stackable position_photos cards'}
+      - @position.photos.each do |attach|
+        = render '/web/position_photos/shared/position_photo',
+          :position_photo => attach
+
+    %div{:class => 'ui hidden divider'}
+
+    %div.field{:class => 'fileinput-button'}
+      = f.label :add_photo,
+        "#{icon :file} Выберете фото".html_safe,
+        :class => 'ui icon labeled button'
+      = f.file_field :add_photo, :class => :hidden
+
+  -# Классификация
+  %h3{:class => 'ui dividing header'}= t 'activerecord.attributes.position.categories'
+
+  %div.categories
+    = f.error_message :category_ids, :class => 'ui negative message'
+    %div.field.category.required{:class => "ten wide #{f.error_class :category_ids}"}
+      = f.label t('parameters.categories.main_type.types.class')
+      = f.select_position_category :category_ids,
+        :main_type => :class
+    %div.field.category.order.required{:class => "ten wide #{f.error_class :category_ids}"}
+      = f.label t('parameters.categories.main_type.types.order')
+      = f.select_position_category :category_ids,
+        :main_type => :order
+
+    %div.field.category.suborder{:class => "ten wide #{f.error_class :category_ids}"}
+      = f.label :category_ids do
+        = t('parameters.categories.main_type.types.suborder')
+        = icon('link red clear delete')
+      = f.select_position_category :category_ids,
+        :main_type => :suborder
+
+    %div.field.category.family{:class => "ten wide #{f.error_class :category_ids}"}
+      = f.label :category_ids do
+        = t('parameters.categories.main_type.types.family')
+        = icon('link red clear delete')
+      = f.select_position_category :category_ids,
+        :main_type => :family
+
+    %div.comment= t('tips.positions.about_categories', :link => categories_path).html_safe
+
+  - if UsefulType.any?
+    .ui.divider
+
+    .field{:class => "ten wide #{f.error_class :useful_type_id}"}
+      = f.label :useful_type_id
+      = f.select_useful_type :useful_type_id
+      = f.error_message :useful_type_id
+
+  %h3{:class => 'ui dividing header'}= t 'template.positions.description'
+  -# Морф описание
+  %div.field{:class => f.error_class(:description)}
+    = f.label :description
+    = f.text_area :description, :rows => 5, :placeholder => t('placeholders.positions.description')
+    = f.error_message :desription
+
+  -# Хоз значимость
+  %div.field{:class => f.error_class(:importance)}
+    = f.label :importance
+    = f.text_area :importance, :rows => 5, :placeholder => t('placeholders.positions.importance')
+    = f.error_message :importance
+
+  %h3{:class => 'ui dividing header'}= t 'template.positions.experiments'
+  %div.experiments
+    = f.nested_fields_for :experiments,
+      :wrapper_options => {:class => 'ui experiment segment'},
+      :wrapper_tag => :div do |g|
+      %h4{:class => 'ui header'}
+        = t 'template.positions.experiment'
+        = g.remove_nested_fields_link icon('red delete')
+
+      %div.field{:class => g.error_class(:genbank_id)}
+        = g.label :genbank_id
+        = g.text_field :genbank_id,
+              :placeholder => t('placeholders.experiments.genbank_id')
+        = g.error_message :genban_id
+
+      %div.field{:class => g.error_class(:sequence)}
+        = g.label :sequence
+        = g.text_area :sequence,
+              :rows => 4,
+              :placeholder => t('placeholders.experiments.sequence')
+        = g.error_message :sequence
+
+      = g.hidden_field :id
+      = g.hidden_field :_destroy
+      = g.hidden_field :position_id, :value => @position.id
+
+  = f.add_nested_fields_link :experiments,
+    "#{icon :plus} #{t 'actions.experiments.more'}".html_safe,
+    :class => 'ui icon labeled button',
+    :role => :button
+
+  %h3{:class => 'ui dividing header'}= t 'template.positions.special'
+
+  -# Ген маркер
+  = f.fields_for :genetic_marker, @genetic_marker do |g|
+    %div.field{:class => "ten wide #{f.error_class :genetic_marker}"}
+      = g.label :marker do
+        = t('activerecord.attributes.genetic_marker.marker')
+        = icon('link red clear delete')
+      = g.select_genetic_marker :marker, {},
+        :value => @position.genetic_marker&.marker
+      = f.error_message :genetic_marker
+
+      %div.comment= t 'tips.positions.about_genmarkers'
+
+  -# Праймеры
+  %div.field{:class => "ten wide #{f.error_class :primer_ids}"}
+    = f.label :primer_ids
+    = f.select_primers :primer_ids, {}, :multiple => true
+    = f.error_message :primer_ids
+
+    %div.comment= t('tips.positions.about_primers', :link => primers_path).html_safe
+
+  -# Выровн последовательность
+  %div.field{:class => f.error_class(:aligned_sequence)}
+    = f.label :aligned_sequence do
+      = t('activerecord.attributes.position.aligned_sequence')
+      = link_to icon('refresh'),
+        positions_calculate_path,
+        :title => t('placeholders.positions.calculate'),
+        :class => 'calculate',
+        'data-tooltiped' => true
+    = f.text_area :aligned_sequence, :rows => 4, :placeholder => t('placeholders.positions.aligned_sequence')
+    = f.error_message :aligned_sequence
+
+  %div.field{:class => f.error_class(:restriction_map)}
+    = f.label :restriction_map
+    = f.text_area :restriction_map,
+      :rows => 3,
+      :class => 'js-ckeditor',
+      :placeholder => t('placeholders.positions.restriction_map')
+    = f.error_message :restriction_map
+
+  .ui.divider
+
+  .actions.buttons
+    = f.button "#{icon :check} #{t 'actions.common.save'}".html_safe,
+    :class => 'ui positive icon labeled button'
+
+    - if @position.persisted?
+      = link_to "#{icon :remove} #{t 'actions.common.cansel'}".html_safe,
+      position_path(@position),
+      :class => 'ui default icon labeled button'
+    - else
+      = link_to "#{icon :remove} #{t 'actions.common.cansel'}".html_safe,
+      positions_path,
+      :class => 'ui default icon labeled button'

@@ -1,0 +1,31 @@
+- breadcrumb :primers
+
+%h1{:class => 'ui dividing header'}= title t 'meta_tags.primers.index.title'
+
+.ui.basic.actions.nopadded.segment
+  .field
+    = link_to "#{icon :plus} #{t 'actions.primers.create'}".html_safe,
+      new_primer_path,
+      :class => 'ui loads labeled icon positive button',
+      :remote => true
+
+  .field.order
+    = form_tag primers_path,
+      :remote => true,
+      :class => :loads,
+      :method => :get do
+
+      = label_tag :param_order, t('order.primers.label')
+
+      = select_tag :param_order, options_for_select([[t('order.primers.by.code'), :code], [t('order.primers.by.direction'), :direction], [t('order.primers.by.sequence'), :sequence]], params[:param_order])
+
+      = hidden_field_tag :page, @primers.current_page
+
+= render '/web/primers/shared/table', :primers => @primers
+
+.ui.basic.segment.nopadded.comment.right.aligned
+  = t 'tips.primers.selected',
+    :selected => @primers.length,
+    :total => Primer.count
+
+= render :template => "/web/primers/#{modal}" if defined? modal

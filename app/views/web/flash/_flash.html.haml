@@ -1,0 +1,5 @@
+%div{:class => "ui #{notification.style} flash element", 'data-status' => notification.status}
+  = icon :close
+
+  %div.header= notification.title
+  %div.content= notification.body

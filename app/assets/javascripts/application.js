@@ -1,0 +1,10 @@
+//= require jquery
+//= require jquery_ujs
+//= require jquery.remotipart
+//= require turbolinks
+//= require i18n
+//= require i18n/translations
+//= require semantic-ui
+//= require handlers
+//= require loader
+//= require common

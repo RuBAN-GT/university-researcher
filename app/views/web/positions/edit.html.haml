@@ -1,0 +1,7 @@
+- breadcrumb :edit_position, @position
+
+%h1{:class => 'ui dividing header'}= title
+
+= render '/web/positions/shared/form'
+
+= tag_parent_url edit_position_path(@position)

@@ -1,0 +1,24 @@
+- breadcrumb :user, current_user
+
+%h1{:class => 'ui dividing header'}= @user.realname
+
+%h3{:class => 'ui header'}= t 'template.common.info'
+%table{:class => 'ui definition celled selectable striped primers table'}
+  %tbody
+    %tr
+      %td.collapsing= t 'activerecord.attributes.user.realname'
+      %td= @user.realname
+    %tr
+      %td.collapsing= t 'activerecord.attributes.user.email'
+      %td= mail_to @user.email
+    %tr
+      %td.collapsing= t 'activerecord.attributes.user.created_at'
+      %td= @user.created_at.strftime '%Y/%m/%d'
+    %tr
+      %td.collapsing= t 'activerecord.attributes.user.current_sign_in_at'
+      %td= (@user.current_sign_in_at&.strftime('%Y/%m/%d %H:%M') || '---')
+
+- if is_current?(@user)
+  = link_to "#{icon :setting} #{t 'template.common.settings'}".html_safe,
+    edit_user_path(@user),
+    :class => 'ui positive labeled icon right floated button'

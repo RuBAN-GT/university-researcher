@@ -1,0 +1,28 @@
+ru:
+  activerecord:
+    attributes:
+      user:
+        created_at: Зарегистрирован
+        current_sign_in_at: Последний вход
+        email: Email
+        new_password: Новый пароль
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+        realname: Имя
+  messages:
+    users:
+      error: Ошибка обновления профиля, проверьте заполненные поля.
+      success: Профиль успешно обновлён.
+  placeholders:
+    users:
+      current_password: Введите текущий пароль
+      email: Введите ваш Email
+      realname: Введите ваше имя
+  template:
+    users:
+      basic: Общие данные
+      security: Безопасность
+  tips:
+    users:
+      email: Email необходим для входа в систему, а также для получение её уведомлений.
+      security: Отнеситесь внимательно к выбору пароля от вашего аккаунта.

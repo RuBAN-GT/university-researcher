@@ -1,0 +1,14 @@
+- class_name = 'ui list' unless defined?(class_name).nil?
+
+%div{:class => class_name}
+  - categories.each do |category|
+    %div.item
+      = icon :folder
+      %div.content
+        = link_to category.full_name,
+            category_path(category),
+            :class => :header
+        - if category.subcategories.any?
+          = render '/web/categories/shared/list',
+          :categories => category.subcategories,
+          :class_name => 'list'

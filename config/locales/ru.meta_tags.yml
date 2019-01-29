@@ -1,0 +1,60 @@
+ru:
+  meta_tags:
+    categories:
+      create:
+        title: Добавление категории
+      edit:
+        title: Изменение категории
+      index:
+        title: Категории
+      new:
+        title: Добавление категории
+      show:
+        title: Категории
+    defaults:
+      site: Researcher
+    pages:
+      error_400:
+        title: Ошибочный запрос
+      error_404:
+        title: Страница не найдена
+      home:
+        title: Добро пожаловать
+    passwords:
+      edit:
+        title: Восстановление пароля
+      new:
+        title: Восстановление пароля
+    positions:
+      create:
+        title: Добавление позиции
+      edit:
+        title: Изменение позиции
+      index:
+        title: Позиции
+      new:
+        title: Добавление позиции
+      show:
+        title: Позиция
+      update:
+        title: Изменение позиции
+    primers:
+      create:
+        title: Добавление праймера
+      edit:
+        title: Изменить праймер
+      index:
+        title: Праймеры
+      new:
+        title: Добавление праймера
+      show:
+        special: 'Праймер: %{code}'
+        title: Праймер
+    sessions:
+      new:
+        title: Вход
+    users:
+      edit:
+        title: Настройки профиля
+      show:
+        title: Профиль

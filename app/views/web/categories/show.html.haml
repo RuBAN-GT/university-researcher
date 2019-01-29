@@ -1,0 +1,47 @@
+- breadcrumb :category, @category
+
+%h1{:class => 'ui dividing header'}= title t 'template.categories.title', :name => @category.full_name
+
+%table{:class => 'ui definition selectable celled table'}
+  %tr
+    %td.collapsing= t 'activerecord.attributes.category.main_type'
+    %td= @category.main_type_name
+  %tr
+    %td.collapsing= t 'activerecord.attributes.category.original_name'
+    %td= @category.original_name || '---'
+  %tr
+    %td.collapsing= t 'activerecord.attributes.category.name'
+    %td= @category.name || '---'
+  %tr
+    %td.collapsing= t 'activerecord.attributes.category.parent_id'
+    %td
+      - if @category.parent.nil?
+        \---
+      - else
+        = link_to @category.parent.full_name, category_path(@category.parent)
+  %tr
+    %td.collapsing= t 'activerecord.attributes.category.created_at'
+    %td= @category.created_at.strftime '%Y/%M/%d'
+  %tr
+    %td.collapsing= t 'parameters.categories.positions'
+    %td= link_to @category.positions.count, positions_path(:param_category_id => @category.id)
+
+- if @category.subcategories.any?
+  %h3{:class => 'ui dividing header'}= t 'template.categories.subcategories'
+  = render 'web/categories/shared/list',
+    :categories => @category.subcategories
+
+.ui.divider
+.actions.buttons
+  = link_to "#{icon :edit} #{t 'actions.categories.edit'}".html_safe,
+    edit_category_path(@category),
+    :class => 'ui positive icon labeled button',
+    :remote => true
+
+  = link_to "#{icon :trash} #{t 'actions.categories.delete'}".html_safe,
+    category_path(@category),
+    :class => 'ui negative icon labeled button',
+    :method => :delete,
+    :data => { :confirm => true }
+
+= tag_parent_url category_path(@category)

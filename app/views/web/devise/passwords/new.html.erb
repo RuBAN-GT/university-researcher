@@ -1,0 +1,26 @@
+<h2 class="ui dividing header"><%= title t('meta_tags.passwords.new.title') %></h2>
+
+<%= form_for resource,
+  :as => resource_name,
+  :url => password_path(resource_name),
+  :html => {
+    :class => 'ui form',
+    :method => :post
+  } do |f|
+%>
+  <% devise_error_messages! %>
+
+  <div class="field <%= 'error' if resource.errors[:email].any? %>">
+    <%= f.label :email %>
+    <div class="ui left icon input">
+      <%= f.email_field :email, :autofocus => true, :required => true, :placeholder => t('placeholders.common.email')  %>
+      <%= icon :mail %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.button t('devise.passwords.new.send_me_reset_password_instructions'), :class => 'ui fluid positive button' %>
+  </div>
+<% end %>
+
+<%= render '/web/devise/shared/links' %>

@@ -1,0 +1,39 @@
+ru:
+  actions:
+    categories:
+      create: Создать категорию
+      delete: Удалить
+      edit: Изменить категорию
+  activerecord:
+    attributes:
+      category:
+        created_at: Добавлено
+        main_type: Тип
+        name: Русское название
+        original_name: Латинское название
+        parent_id: Родительский раздел
+  messages:
+    categories:
+      created: Категория успешно добавлена
+      destroyed: Категория успешно удалена
+      updated: Категория успешно обновлена
+      wrong: Ошибка изменения категории
+      wrong_classification: с ошибкой (неверная классификация)
+  parameters:
+    categories:
+      main_type:
+        types:
+          class: Класс
+          family: Семейство
+          order: Отряд
+          suborder: Подотряд
+      positions: Позиции
+  placeholders:
+    categories:
+      name: Введите название на русском
+      original_name: Введите название на латинском
+      select: Выберете категорию
+  template:
+    categories:
+      subcategories: Подразделы
+      title: 'Категория: %{name}'

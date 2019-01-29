@@ -1,0 +1,5 @@
+ru:
+  activerecord:
+    attributes:
+      genetic_marker:
+        marker: Генетический маркер

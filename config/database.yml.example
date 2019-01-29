@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  username: vagrant
+  password: vagrant
+
+development:
+  <<: *default
+  database: researcher_development
+
+test:
+  <<: *default
+  database: researcher_test
+
+production:
+  <<: *default
+  database: researcher_production
+
+staging:
+  <<: *default
+  database: researcher_staging

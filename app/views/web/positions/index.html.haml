@@ -1,0 +1,9 @@
+- breadcrumb :positions
+
+%h1{:class => 'ui dividing header'}= title
+
+= render '/web/positions/shared/search'
+
+= render '/web/positions/shared/table', :positions => @positions
+
+= will_paginate @positions

@@ -1,0 +1,6 @@
+<% if @position_photo.persisted? %>
+  $('.position_photos.cards')
+    .append(
+      '<%= j render '/web/position_photos/shared/position_photo', :position_photo => @position_photo %>'
+    );
+<% end %>

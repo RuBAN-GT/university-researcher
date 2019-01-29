@@ -1,0 +1,31 @@
+%div{ :class => 'ui modal primer', :data => { :url => primer_path(@primer) } }
+  = icon :close
+
+  %div.header= title t('meta_tags.primers.show.special', :code => @primer.code)
+
+  %div.content
+    %table{:class => 'ui very basic selectable celled table'}
+      %tr
+        %td.collapsing= t 'activerecord.attributes.primer.code'
+        %td= @primer.code
+      %tr
+        %td.collapsing= t 'activerecord.attributes.primer.direction'
+        %td= @primer.direction_name
+      %tr
+        %td.collapsing= t 'activerecord.attributes.primer.sequence'
+        %td= @primer.sequence
+      %tr
+        %td.collapsing= t 'activerecord.attributes.primer.created_at'
+        %td= @primer.created_at.strftime '%Y/%M/%d'
+      %tr
+        %td.collapsing= t 'parameters.primers.positions'
+        %td= link_to @primer.positions.count, positions_path(:param_primer_id => @primer.id)
+
+  %div.actions
+    = link_to t('actions.primers.delete'),
+      primer_path(@primer),
+      :class => 'ui red button',
+      :method => :delete,
+      :data => { :confirm => true, :backurl => primers_path }
+
+    = link_to t('actions.primers.edit'), edit_primer_path(@primer), :class => 'ui blue loads button', :remote => true

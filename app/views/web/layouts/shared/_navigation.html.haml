@@ -1,0 +1,22 @@
+.main.navigation
+  .ui.vertical.inverted.menu.fixed.top
+    .item
+      .header= t 'meta_tags.positions.index.title'
+
+      .menu
+        = link_to t('meta_tags.positions.index.title'), positions_path, :class => :item
+        = link_to t('meta_tags.positions.create.title'), new_position_path, :class => :item
+
+    .item
+      .header= t 'meta_tags.categories.index.title'
+
+      .menu
+        = link_to t('meta_tags.categories.index.title'), categories_path, :class => :item
+        = link_to t('meta_tags.categories.create.title'), new_category_path, :class => :item
+
+    .item
+      .header= t 'meta_tags.primers.index.title'
+
+      .menu
+        = link_to t('meta_tags.primers.index.title'), primers_path, :class => :item
+        = link_to t('meta_tags.primers.create.title'), new_primer_path, :class => :item
